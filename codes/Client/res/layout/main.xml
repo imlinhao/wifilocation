@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<TextView android:id="@+id/locationTv" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="" />
+
+	<TextView android:id="@+id/xTv" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="x坐标：" />
+	<EditText android:id="@+id/xEt" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="" android:hint="请输入x坐标" />
+
+
+
+	<TextView android:id="@+id/yTv" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="y坐标：" />
+	<EditText android:id="@+id/yEt" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="" android:hint="请输入y坐标" />
+
+
+
+
+	<TextView android:id="@+id/zTv" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="z坐标：" />
+	<EditText android:id="@+id/zEt" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="" android:hint="请输入z坐标" />
+
+
+
+	<Button android:id="@+id/startGetSampleBtn"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="开始采样" />
+	<!--  <Button android:id="@+id/stopGetSampleBtn" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="结束采样" />-->
+	<Button android:id="@+id/locateBtn" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="定位" />
+</LinearLayout>
+
