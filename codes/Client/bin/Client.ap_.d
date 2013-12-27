@@ -1,10 +1,10 @@
-F:\Users\hao\Desktop\location\scripts\client\android_client\bin\Client.ap_ \
- : F:\Users\hao\Desktop\location\scripts\client\android_client\res\drawable-hdpi\icon.png \
-F:\Users\hao\Desktop\location\scripts\client\android_client\res\drawable-ldpi\icon.png \
-F:\Users\hao\Desktop\location\scripts\client\android_client\res\drawable-mdpi\icon.png \
-F:\Users\hao\Desktop\location\scripts\client\android_client\res\layout\main.xml \
-F:\Users\hao\Desktop\location\scripts\client\android_client\res\values\strings.xml \
-F:\Users\hao\Desktop\location\scripts\client\android_client\bin\res\drawable-hdpi\icon.png \
-F:\Users\hao\Desktop\location\scripts\client\android_client\bin\res\drawable-ldpi\icon.png \
-F:\Users\hao\Desktop\location\scripts\client\android_client\bin\res\drawable-mdpi\icon.png \
-F:\Users\hao\Desktop\location\scripts\client\android_client\bin\AndroidManifest.xml \
+C:\Users\dell\Desktop\wifilocation\codes\Client\bin\Client.ap_ \
+ : C:\Users\dell\Desktop\wifilocation\codes\Client\res\drawable-hdpi\icon.png \
+C:\Users\dell\Desktop\wifilocation\codes\Client\res\drawable-ldpi\icon.png \
+C:\Users\dell\Desktop\wifilocation\codes\Client\res\drawable-mdpi\icon.png \
+C:\Users\dell\Desktop\wifilocation\codes\Client\res\layout\main.xml \
+C:\Users\dell\Desktop\wifilocation\codes\Client\res\values\strings.xml \
+C:\Users\dell\Desktop\wifilocation\codes\Client\bin\res\drawable-hdpi\icon.png \
+C:\Users\dell\Desktop\wifilocation\codes\Client\bin\res\drawable-ldpi\icon.png \
+C:\Users\dell\Desktop\wifilocation\codes\Client\bin\res\drawable-mdpi\icon.png \
+C:\Users\dell\Desktop\wifilocation\codes\Client\bin\AndroidManifest.xml \
