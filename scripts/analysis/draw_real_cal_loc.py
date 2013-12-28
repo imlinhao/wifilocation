@@ -1,12 +1,17 @@
+#-*- coding: utf-8 -*-
 """
 Copyright Hao Lin
 This script is used to draw the real location associated with its calculated location
 """
+
 import re
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
+import matplotlib.pyplot as pl
 import numpy as np
 import math
 
+font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
 def get_real_cal_loc_list(query_list, db):
 	real_cal_loc_list = []
 	real_loc_list = range(0,len(query_list))
@@ -266,14 +271,15 @@ def plt_cdf(err_distance_list, color_style, label):
 	cdf = np.cumsum(pdf)
 	print(cdf)
 	p = plt.plot(bins,np.append([zero_count_percentage],cdf),color_style,label=label)
+
 	return p
 
 def plt_real_cal_loc_list(real_cal_loc_list, low, high):
 	print(real_cal_loc_list)
 	for real_cal_loc in real_cal_loc_list:
-		plt.plot(real_cal_loc[0], low, 'o')
-		plt.plot(real_cal_loc[1], high, 'd')
-		plt.plot(real_cal_loc, [low, high], '-')
+		plt.plot(real_cal_loc[0], low, 'ko')
+		plt.plot(real_cal_loc[1], high, 'kd')
+		plt.plot(real_cal_loc, [low, high], 'k-')
 	return 0
 
 if __name__ == '__main__':
@@ -308,7 +314,13 @@ if __name__ == '__main__':
 	loc_list = range(0,51)
 
 	fig, ax = plt.subplots()
-	color_style = ["r*-","g+-","bo-","k*--","r+--","go--","b*-."]
+	plt.xlabel(u'位置标号',fontproperties=font)
+	
+	#plt.set_yticklabels(u'实际位置',fontproperties=font)
+	#plt.set_yticklabels(u'估算位置',fontproperties=font)
+	#plt.set_yticklabels(u'实际位置',fontproperties=font)
+	#plt.set_yticklabels(u'估算位置',fontproperties=font)
+	color_style = ["k*-","k+-","ko-","k*--","k+--","ko--","k*-."]
 
 	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
 	db = construct_allchannel_db(OFFLINE_DB_FN, offline_stilltime_list)
@@ -327,22 +339,26 @@ if __name__ == '__main__':
 	allchannel_move_real_cal_loc_list = get_real_cal_loc_list(query_list, db)
 	plt_real_cal_loc_list(allchannel_move_real_cal_loc_list, 1.2, 1.8)
 
-	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
-	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
-	threechannel_online_stilltime_list = get_stilltime_list(THREECHANNEL_ONLINE_STILLTIME_FN)
-	threechannel_online_still_query_list = get_3channel_still_query_list(THREECHANNEL_ONLINE_STILL_QUERY_FN, threechannel_online_stilltime_list, loc_list)
-	threechannel_still_real_cal_loc_list = get_real_cal_loc_list(threechannel_online_still_query_list, threechannel_db)
-	plt_real_cal_loc_list(threechannel_still_real_cal_loc_list, 2.2, 2.8)
-
-	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
-	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
-	threechannel_online_movetime_list = get_movetime_list(THREECHANNEL_ONLINE_MOVETIME_FN)
-	threechannel_online_move_query_list = get_3channel_move_query_list(THREECHANNEL_ONLINE_MOVE_QUERY_FN, threechannel_online_movetime_list, loc_list)
-	threechannel_move_real_cal_loc_list = get_real_cal_loc_list(threechannel_online_move_query_list, threechannel_db)
-	plt_real_cal_loc_list(threechannel_move_real_cal_loc_list, 3.2, 3.8)
+#	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
+#	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
+#	threechannel_online_stilltime_list = get_stilltime_list(THREECHANNEL_ONLINE_STILLTIME_FN)
+#	threechannel_online_still_query_list = get_3channel_still_query_list(THREECHANNEL_ONLINE_STILL_QUERY_FN, threechannel_online_stilltime_list, loc_list)
+#	threechannel_still_real_cal_loc_list = get_real_cal_loc_list(threechannel_online_still_query_list, threechannel_db)
+#	plt_real_cal_loc_list(threechannel_still_real_cal_loc_list, 2.2, 2.8)
+#
+#	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
+#	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
+#	threechannel_online_movetime_list = get_movetime_list(THREECHANNEL_ONLINE_MOVETIME_FN)
+#	threechannel_online_move_query_list = get_3channel_move_query_list(THREECHANNEL_ONLINE_MOVE_QUERY_FN, threechannel_online_movetime_list, loc_list)
+#	threechannel_move_real_cal_loc_list = get_real_cal_loc_list(threechannel_online_move_query_list, threechannel_db)
+#	plt_real_cal_loc_list(threechannel_move_real_cal_loc_list, 3.2, 3.8)
 
 	#plt.legend()
-	ax.set_ylim(0, 4)
+	ax.set_ylim(0, 2)
+	yticks = [0.2,0.8,1.2,1.8]
+	ax.set_yticks(yticks)
+	AA=[u'实际位置',u'估算位置',u'实际位置',u'估算位置']
+   	ax.set_yticklabels(AA,fontproperties=font)
 	plt.show()
 
 

@@ -1,8 +1,11 @@
+#-*- coding: utf-8 -*-
 import re
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
 import numpy as np
 import math
 
+font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
 def get_err_distance_list(query_list, db):
 	err_distance_list = []
 	real_loc_list = range(0,len(query_list))
@@ -207,6 +210,7 @@ def get_allchannel_still_query_list(filename, stilltime_list, loc_list):
 	return query_list
 
 def plt_cdf(err_distance_list, color_style, label):
+	color_style = 'ko-'
 	zero_count = err_distance_list.count(0)
 	print(zero_count)
 	zero_count_percentage = zero_count*1.0/len(err_distance_list)
@@ -218,6 +222,8 @@ def plt_cdf(err_distance_list, color_style, label):
 	cdf = np.cumsum(pdf)
 	print(cdf)
 	p = plt.plot(bins,np.append([zero_count_percentage],cdf),color_style,label=label)
+	plt.xlabel(u'定位误差(m)',fontproperties=font)
+	plt.ylabel(u'累积误差概率',fontproperties=font)
 	return p
 
 if __name__ == '__main__':
@@ -261,27 +267,27 @@ if __name__ == '__main__':
 	allchannel_still_err_distance_list = get_err_distance_list(query_list, db)
 	plt_cdf(allchannel_still_err_distance_list, color_style[0],label="all channel still")
 
-	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
-	db = construct_allchannel_db(OFFLINE_DB_FN, offline_stilltime_list)
-	online_movetime_list = get_movetime_list(ALLCHANNEL_ONLINE_MOVETIME_FN)
-	query_list = get_allchannel_move_query_list(ALLCHANNEL_ONLINE_MOVE_QUERY_FN, online_movetime_list, loc_list)
-	allchannel_move_err_distance_list = get_err_distance_list(query_list, db)
-	plt_cdf(allchannel_move_err_distance_list, color_style[1],label="all channel move")
-
-	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
-	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
-	threechannel_online_stilltime_list = get_stilltime_list(THREECHANNEL_ONLINE_STILLTIME_FN)
-	threechannel_online_still_query_list = get_3channel_still_query_list(THREECHANNEL_ONLINE_STILL_QUERY_FN, threechannel_online_stilltime_list, loc_list)
-	threechannel_still_err_distance_list = get_err_distance_list(threechannel_online_still_query_list, threechannel_db)
-	plt_cdf(threechannel_still_err_distance_list, color_style[2], label="three channel still")
-
-	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
-	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
-	threechannel_online_movetime_list = get_movetime_list(THREECHANNEL_ONLINE_MOVETIME_FN)
-	threechannel_online_move_query_list = get_3channel_move_query_list(THREECHANNEL_ONLINE_MOVE_QUERY_FN, threechannel_online_movetime_list, loc_list)
-	threechannel_move_err_distance_list = get_err_distance_list(threechannel_online_move_query_list, threechannel_db)
-	plt_cdf(threechannel_move_err_distance_list, color_style[3], label="three channel move")
-
+#	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
+#	db = construct_allchannel_db(OFFLINE_DB_FN, offline_stilltime_list)
+#	online_movetime_list = get_movetime_list(ALLCHANNEL_ONLINE_MOVETIME_FN)
+#	query_list = get_allchannel_move_query_list(ALLCHANNEL_ONLINE_MOVE_QUERY_FN, online_movetime_list, loc_list)
+#	allchannel_move_err_distance_list = get_err_distance_list(query_list, db)
+#	plt_cdf(allchannel_move_err_distance_list, color_style[1],label="all channel move")
+#
+#	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
+#	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
+#	threechannel_online_stilltime_list = get_stilltime_list(THREECHANNEL_ONLINE_STILLTIME_FN)
+#	threechannel_online_still_query_list = get_3channel_still_query_list(THREECHANNEL_ONLINE_STILL_QUERY_FN, threechannel_online_stilltime_list, loc_list)
+#	threechannel_still_err_distance_list = get_err_distance_list(threechannel_online_still_query_list, threechannel_db)
+#	plt_cdf(threechannel_still_err_distance_list, color_style[2], label="three channel still")
+#
+#	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
+#	threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)
+#	threechannel_online_movetime_list = get_movetime_list(THREECHANNEL_ONLINE_MOVETIME_FN)
+#	threechannel_online_move_query_list = get_3channel_move_query_list(THREECHANNEL_ONLINE_MOVE_QUERY_FN, threechannel_online_movetime_list, loc_list)
+#	threechannel_move_err_distance_list = get_err_distance_list(threechannel_online_move_query_list, threechannel_db)
+#	plt_cdf(threechannel_move_err_distance_list, color_style[3], label="three channel move")
+#
 	plt.legend()
 	ax.set_xlim(0,12)
 	plt.show()

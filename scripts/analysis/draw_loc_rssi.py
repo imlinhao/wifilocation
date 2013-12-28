@@ -1,8 +1,11 @@
+#-*- coding: utf-8 -*-
 import re
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
 import numpy as np
 import math
 
+font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
 def get_err_distance_list(query_list, db):
 	err_distance_list = []
 	real_loc_list = range(0,len(query_list))
@@ -272,8 +275,8 @@ def get_ap_rssilist_from_query_list(query_list):
 				ap_rssilist[ap].append(-100)
 	return ap_rssilist
 
-#g_aps_filter = ["AirJ,74:25:8a:47:3a:90", "AirJ,74:25:8a:47:39:70", "AirJ,74:25:8a:47:39:90", "AirJ,74:25:8a:47:39:b0"] #NOTE:this is hard coding, always need to change for different environment
-g_aps_filter = ["AirJ,74:25:8a:47:3a:90"] #NOTE:this is hard coding, always need to change for different environment
+g_aps_filter = ["AirJ,74:25:8a:47:3a:90", "AirJ,74:25:8a:47:39:70", "AirJ,74:25:8a:47:39:90", "AirJ,74:25:8a:47:39:b0"] #NOTE:this is hard coding, always need to change for different environment
+#g_aps_filter = ["AirJ,74:25:8a:47:3a:90"] #NOTE:this is hard coding, always need to change for different environment
 def plt_loc_db(loc_list, db, colorstyle):
 	ap_rssilist = get_ap_rssilist_from_db(db)
 	#for ap in get_all_ap_from_db(db):
@@ -281,10 +284,17 @@ def plt_loc_db(loc_list, db, colorstyle):
 	#	if (rssi_mean > -75):
 	#		print("ap:%s,rssi:%f;" % (ap, rssi_mean))
 	#		plt.plot(loc_list, ap_rssilist[ap], '--', label=ap)
+	colorstyle = ['ko-', 'kd-', 'k+-', 'k*-']
+	count = 0
 	for ap in g_aps_filter:
+		
+		i = count % len(colorstyle)
 		rssi_mean = np.mean(ap_rssilist[ap])
 		print("ap:%s,rssi:%f;" % (ap, rssi_mean))
-		plt.plot(loc_list, ap_rssilist[ap], colorstyle, label=ap)
+		plt.plot(loc_list, ap_rssilist[ap], colorstyle[i], label=ap)
+		count = count + 1
+	plt.xlabel(u'时间(s)',fontproperties=font)
+	plt.ylabel(u'RSSI(dBm)',fontproperties=font)
 
 def plt_loc_query_list(loc_list, query_list, colorstyle):
 	ap_rssilist = get_ap_rssilist_from_query_list(query_list)
@@ -334,17 +344,17 @@ if __name__ == '__main__':
 
 	offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
 	db = construct_allchannel_db(OFFLINE_DB_FN, offline_stilltime_list)
-	plt_loc_db(loc_list, db, "--")
-	online_stilltime_list = get_stilltime_list(ALLCHANNEL_ONLINE_STILLTIME_FN)
-	query_list = get_allchannel_still_query_list(ALLCHANNEL_ONLINE_STILL_QUERY_FN, online_stilltime_list, loc_list)
-	plt_loc_query_list(loc_list, query_list, "-")
+	plt_loc_db(loc_list, db, "-")
+	#online_stilltime_list = get_stilltime_list(ALLCHANNEL_ONLINE_STILLTIME_FN)
+	#query_list = get_allchannel_still_query_list(ALLCHANNEL_ONLINE_STILL_QUERY_FN, online_stilltime_list, loc_list)
+	#plt_loc_query_list(loc_list, query_list, "-")
 
 	#offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
 	#db = construct_allchannel_db(OFFLINE_DB_FN, offline_stilltime_list, "--")
 	#plt_loc_db(loc_list, db)
-	online_movetime_list = get_movetime_list(ALLCHANNEL_ONLINE_MOVETIME_FN)
-	query_list = get_allchannel_move_query_list(ALLCHANNEL_ONLINE_MOVE_QUERY_FN, online_movetime_list, loc_list)
-	plt_loc_query_list(loc_list, query_list, "-.")
+	#online_movetime_list = get_movetime_list(ALLCHANNEL_ONLINE_MOVETIME_FN)
+	#query_list = get_allchannel_move_query_list(ALLCHANNEL_ONLINE_MOVE_QUERY_FN, online_movetime_list, loc_list)
+	#plt_loc_query_list(loc_list, query_list, "-.")
 
 	#offline_stilltime_list = get_stilltime_list(OFFLINE_STILLTIME_FN)
 	#threechannel_db = construct_3channel_db(OFFLINE_DB_FN, offline_stilltime_list)

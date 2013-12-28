@@ -1,0 +1,7 @@
+VERSION.SDK_INT:17
+MANUFACTUERE:unknown
+MODEL:Full Android on Grouper
+PRODUCT:full_grouper
+DEVICE:grouper
+CPU_ABI:armeabi-v7a
+CPU_ABI2:armeabi

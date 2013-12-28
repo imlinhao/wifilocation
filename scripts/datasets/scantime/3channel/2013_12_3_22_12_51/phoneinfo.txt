@@ -1,0 +1,8 @@
+VERSION.SDK_INT:16
+MANUFACTUERE:Xiaomi
+MODEL:MI 1S
+PRODUCT:mione_plus
+DEVICE:mione_plus
+CPU_ABI:armeabi-v7a
+CPU_ABI2:armeabi
+MACINFO:c4:6a:b7:55:62:b3

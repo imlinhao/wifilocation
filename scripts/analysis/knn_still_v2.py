@@ -1,7 +1,11 @@
+#-*- coding: utf-8 -*-
 import re
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
 import numpy as np
 import math
+
+font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
 DATA_ROOT = "../datasets/fingerprint_db/hao_nexus7"
 STILLTIME_FN = DATA_ROOT+"/2013_11_29_21_26_4_offline/stilltime.txt"
 DB_FN = DATA_ROOT+"/2013_11_29_21_26_4_offline/wifi.txt"
@@ -120,5 +124,7 @@ print(hist)
 pdf = 1.0*hist/len(err_distance_list)
 cdf = np.cumsum(pdf)
 print(cdf)
-plt.plot(bins,np.append([zero_count_percentage],cdf),'r*-')
+plt.plot(bins,np.append([zero_count_percentage],cdf),'ko-')
+plt.xlabel(u'定位误差(m)',fontproperties=font)
+plt.ylabel(u'累积误差概率',fontproperties=font)
 plt.show();

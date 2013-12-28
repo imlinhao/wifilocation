@@ -1,0 +1,6 @@
+﻿Due to the limitations of the supported zip file format, the following file(s) had to be renamed.
+
+Original File Name  ->  New File Name
+Wi-Fi定位工具集设计与实现.doc -> File1.doc
+基于位置指纹的Wi-Fi定位系统设计 - 计算机应用与软件.doc -> File2.doc
+基于位置指纹的Wi-Fi定位系统设计-青年学术论坛.doc -> File3.doc

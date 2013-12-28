@@ -1,0 +1,7 @@
+VERSION.SDK_INT:16
+MANUFACTUERE:Xiaomi
+MODEL:MI 2
+PRODUCT:aries
+DEVICE:aries
+CPU_ABI:armeabi-v7a
+CPU_ABI2:armeabi

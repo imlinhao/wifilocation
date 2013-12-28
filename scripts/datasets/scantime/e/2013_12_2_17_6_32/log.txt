@@ -1,0 +1,5 @@
+firstvoiceRecord---start record
+firstvoiceRecord---finish record
+secondvoiceRecord---start record
+secondvoiceRecord---finish record
+AllRecorded---finish record
